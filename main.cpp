@@ -78,8 +78,11 @@ int main()
 			
 		const Coord DELTA_COORD = Coord(20,1);
 		int row = HiCoordToTabRow(HiCoords, INIT_HI_COORDS);
+		
 		string *numString = new string(std::to_string(1.0));
-		int length = numString->length();				
+		
+		int length = numString->length() + 3;				
+		
 		delete numString;
 
 		hilight(HiCoords, length);
@@ -113,7 +116,7 @@ int main()
 				break;
 			
 			case 'd':
-				if (HiCoords.x != INIT_HI_COORDS.x + 10)
+				if (HiCoords.x != INIT_HI_COORDS.x + 20)
 				{
 					delight(HiCoords, length);
 					HiCoords.x += DELTA_COORD.x;
@@ -184,19 +187,19 @@ void delight(Coord crd, int length)
 void drawTable(int entries, const Coord INIT_COORD, TablePair data)
 {
 
-	gotoxy(10, 10);
+	gotoxy(15, 10);
 	cout << "X";
 
-	gotoxy(20, 10);
+	gotoxy(25, 10);
 	cout << "|";
 
-	gotoxy(30, 10);
+	gotoxy(35, 10);
 	cout << "f(X)";
 
 	gotoxy(7, 11);
-	for (int i = 7; i <= 33; ++i)
+	for (int i = 7; i <= 42; ++i)
 	{
-		if (i == 20)
+		if (i == 25)
 			cout << "+";
 		else
 			cout << "-";
@@ -233,7 +236,10 @@ void drawTable(int entries, const Coord INIT_COORD, TablePair data)
 				if (data[i].first == MIN)
 					cout << " ";
 				else
+				{
+					gotoxy(curCoord.x - 3, curCoord.y);
 					cout << data[i].first;
+				}
 				break;
 
 			case 2:
@@ -244,7 +250,10 @@ void drawTable(int entries, const Coord INIT_COORD, TablePair data)
 				if (data[i].second == MIN)
 					cout << " ";
 				else
+				{
+					gotoxy(curCoord.x - 3, curCoord.y);
 					cout << data[i].second;
+				}
 				break;
 			}
 		}
